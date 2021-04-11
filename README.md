@@ -1,5 +1,5 @@
 # Flyback_converter
-A flyback converter for audio amplifier source
+A flyback converter for audio amplifier power source
 
 * Vo = 50VDC
 * Po = 200W
