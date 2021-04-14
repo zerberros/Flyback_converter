@@ -1,0 +1,103 @@
+
+
+V1     vcc            0    DC 15
+v_feed feedbk         0    DC 6
+
+
+X_triang_sig  feedbk vcc  mosfet_ctrl     triang_sig_and_comp
+
+
+.SUBCKT triang_sig_and_comp   feedbk_sig   vcc   mosfet_ctrl
+
+D31     vcc   n2      1N4148
+D32     n2    n3      1N4148
+
+R31     n3    n4      1000
+
+D33     n4    n5      1N4148
+D34     n5    0       1N4148
+
+R32     vcc   n6      330
+Q31     n7    n3  n6  2N3906
+
+D35     n7    sw_ctrl 1N4148
+D36     sw_ctrl   n8  1N4148
+D37     n7    triang  1N4148
+D38     triang    n8  1N4148
+
+Q32     n8    n4  n9  2N3904
+R33     n9    0       330
+
+C31     triang    0   1.5n
+
+X_OPAMP31A  n_ninv triang  vcc 0 sw_ctrl  0 LM119
+R34_pu  vcc      sw_ctrl  2k
+R35     sw_ctrl  n_ninv   3k
+R36     vcc      n_ninv   9k
+R37     n_ninv   0        9k
+
+X_OPAMP31B  triang  feedbk_sig  vcc 0 mosfet_ctrl  0 LM119
+R38     mosfet_ctrl   vcc     2k        
+
+.ends
+
+.model 2N3906 PNP(IS=1E-14 VAF=100
++  BF=200 IKF=0.4 XTB=1.5 BR=4
++  CJC=4.5E-12 CJE=10E-12 RB=20 RC=0.1 RE=0.1
++  TR=250E-9   TF=350E-12 ITF=1 VTF=2 XTF=3 Vceo=40  Icrating=200m)
+
+.model 2N3904 NPN(IS=1E-14 VAF=100
++  Bf=300 IKF=0.4 XTB=1.5 BR=4
++  CJC=4E-12  CJE=8E-12 RB=20 RC=0.1 RE=0.1
++  TR=250E-9  TF=350E-12 ITF=1 VTF=2 XTF=3 Vceo=40 Icrating=200m)
+
+.MODEL 1N4148 D  ( IS=10.4n RS=51.5m BV=75.0 IBV=1.00u
++ CJO=2.00p  M=0.333 N=2.07 TT=5.76n )
+
+
+*-----------------------------------------------------------------------------
+* connections: non-inverting input
+* | inverting input
+* | | positive power supply
+* | | | negative power supply
+* | | | | open collector output
+* | | | | | output ground
+* | | | | | |
+.subckt LM119 1 2 3 4 5 6
+*
+f1 3 9 v1 1
+iee 7 4 dc 100.0E-6
+q1 9 2 7 qin
+q2 8 1 7 qin
+q3 9 8 3 qmo
+q4 8 8 3 qmi
+.model qin NPN(Is=800.0E-18 Bf=333.3)
+.model qmi PNP(Is=800.0E-18 Bf=1002)
+.model qmo PNP(Is=800.0E-18 Bf=1000 Cjc=1E-15 Tr=59.42E-9)
+e1 10 6 3 9 1
+v1 10 11 dc 0
+q5 5 11 6 qoc
+.model qoc NPN(Is=800.0E-18 Bf=41.38E3 Cjc=1E-15 Tf=23.91E-12 Tr=24.01E-9)
+dp 4 3 dx
+rp 3 4 5.556E3
+.model dx D(Is=800.0E-18 Rs=1)
+*
+.ends
+
+
+.control
+
+set color0 = white
+set color1 = black
+set color2 = rgb:f/0/0
+set color3 = rgb:0/f/0
+set color4 = rgb:0/0/f
+set color5 = rgb:f/0/f
+
+
+tran 10n 50u
+
+plot mosfet_ctrl x_triang_sig.triang feedbk
+
+.endc
+.end 

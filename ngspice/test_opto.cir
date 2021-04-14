@@ -1,0 +1,49 @@
+* Title: Test Opto
+
+*.INCLUDE ./lib/AC_BJT_1mA.txt
+
+
+
+*v1 n1 0 dc 50
+V1 n1 0 PULSE (45 55 0.1n 0.1n 0.1n 50u 100u )
+v2 n3 0  dc 15
+
+R1 n1 n2 56k
+R2 n4 0  7.5k
+
+XOPTO n2 0 n3 n4 AC_BJT_1mA
+
+
+
+.SUBCKT AC_BJT_1mA 1 2 C E REL_CTR=1
+D1 1 6 DIRED	;IRED
+*D2 6 1 DIRED	;IRED
+Vsense 6 2 0 ;IF Current sense
+Hd R 0 Vsense 1	;I-V
+Rd R T 50K
+Cd T 0 0.1n
+Rdummy B 0 4G
+Q1 C B E [E] QBJT ;phototransistor
+* V-I
+Gpcg C B TABLE  ;Photodetector {(IC vs IF) / Q1 BF}
++ {0.875*REL_CTR*abs(V(T))**1.658*exp(limit(4.3-60*abs(V(T)),-50,50))*
++ ((4*10**(-9)*(REL_CTR**6))-(7*10**(-7)*(REL_CTR**5))+(5*10**(-5)*(REL_CTR**4))-(0.0015*(REL_CTR**3))+
++ (0.023*(REL_CTR**2))-(0.155*(REL_CTR))+2.2261)/100}
++ (0,0) (10,10)
+.model DIRED D IS=1P N=1.948621 BV=6 IBV=10U
++ CJO=18.8P EG=1.424 TT=500N
+.model QBJT NPN IS=3.64P BF=100 NF=1.193293 BR=10 TF=13N TR=50n
++ CJE=5.16P CJC=1P VAF=65 ISS=0 CJS=7.74p
+.ends
+
+
+.control
+
+tran 1n 300u 
+
+*OP
+
+plot n4 n1
+
+.endc
+.end

@@ -571,6 +571,44 @@
         )
       )
     )
+    (symbol "Device:R" (pin_numbers hide) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "R" (id 0) (at 2.032 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "R" (id 1) (at 0 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (id 2) (at -1.778 0 90)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (id 3) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "R res resistor" (id 4) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Resistor" (id 5) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "R_*" (id 6) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "R_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54)
+          (stroke (width 0.254)) (fill (type none))
+        )
+      )
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
     (symbol "Device:Transformer_1P_1S" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "T" (id 0) (at 0 6.35 0)
         (effects (font (size 1.27 1.27)))
@@ -1089,6 +1127,10 @@
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid 2b1246be-5bf0-445b-8699-c6da60802a2e)
   )
+  (wire (pts (xy 123.825 94.615) (xy 125.095 94.615))
+    (stroke (width 0) (type solid) (color 0 0 0 0))
+    (uuid 125268a9-5a7a-4d0d-938a-fcfbce8d6349)
+  )
   (wire (pts (xy 130.81 62.865) (xy 130.81 64.77))
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid a1cb2c94-5fd4-4528-9304-6fbe53827758)
@@ -1109,7 +1151,7 @@
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid 00e011c4-e57b-488c-8826-699129e81d2c)
   )
-  (wire (pts (xy 130.81 94.615) (xy 133.35 94.615))
+  (wire (pts (xy 132.715 94.615) (xy 133.35 94.615))
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid 125268a9-5a7a-4d0d-938a-fcfbce8d6349)
   )
@@ -1255,10 +1297,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "MOSFET_CTRL" (shape input) (at 130.81 94.615 180) (fields_autoplaced)
+  (global_label "MOSFET_CTRL" (shape input) (at 123.825 94.615 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 1300f281-193f-4ad2-95ee-16daac304ccc)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 115.6969 94.5356 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 108.7119 94.5356 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -1420,6 +1462,21 @@
     )
     (pin "1" (uuid 66de4511-a65f-400c-b1ff-5cf15005de93))
     (pin "2" (uuid 1def9395-1d14-4a6a-9d4b-411a6f14bd45))
+  )
+
+  (symbol (lib_id "Device:R") (at 128.905 94.615 90) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 642f885e-bf43-4313-a55c-85a8d40e226d)
+    (property "Reference" "R?" (id 0) (at 128.905 90.1658 90))
+    (property "Value" "10" (id 1) (at 128.905 92.4645 90))
+    (property "Footprint" "" (id 2) (at 128.905 96.393 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 128.905 94.615 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 36b416df-cadc-4050-8ad1-fdb1d341ad79))
+    (pin "2" (uuid ac3308c6-ff6c-4906-b91f-3d23c89c1f7b))
   )
 
   (symbol (lib_id "Connector:Conn_01x02_Female") (at 43.18 54.61 180) (unit 1)
@@ -1746,6 +1803,9 @@
     (path "/1c076dca-7f67-465d-af64-7c826a4da64f"
       (reference "Q?") (unit 1) (value "Q_NMOS_DGS") (footprint "")
     )
+    (path "/642f885e-bf43-4313-a55c-85a8d40e226d"
+      (reference "R?") (unit 1) (value "10") (footprint "")
+    )
     (path "/b0d8b8d3-3c8a-48ef-8a5b-8f060bc848a9"
       (reference "T1") (unit 1) (value "Transformer_1P_1S") (footprint "Transformer_THT:Transformer_NF_ETAL_P3356")
     )
@@ -1843,61 +1903,61 @@
       (reference "#PWR?") (unit 1) (value "+15V") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/83fbb457-623f-4695-8e88-2a124690cefd"
-      (reference "C?") (unit 1) (value "100n") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/3b546506-e4be-4bf9-899a-1654a58ac16a"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+      (reference "C31") (unit 1) (value "1.5n") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/627b689f-bb7c-4620-8ae7-bdc4f112948d"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+      (reference "D31") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
     )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/755e20c0-5ce5-4733-bdac-dd2777514a0a"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/7d1aabbc-9dbc-4082-a153-970a2a8ee561"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/8cd4e952-4827-4c48-9c0a-53b22888d242"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/97c7d7d3-333e-48a4-a5dc-b02451811911"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/e149cf92-9b3c-4143-9640-abbb5820f5ed"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/3b546506-e4be-4bf9-899a-1654a58ac16a"
+      (reference "D32") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/e8252336-51a8-4bea-8920-cce66aa0eb88"
-      (reference "D?") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+      (reference "D33") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
     )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/727cf34d-140c-48b6-9936-d91d5a57cf44"
-      (reference "Q?") (unit 1) (value "MMBT3904") (footprint "Package_TO_SOT_SMD:SOT-23")
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/755e20c0-5ce5-4733-bdac-dd2777514a0a"
+      (reference "D34") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/e149cf92-9b3c-4143-9640-abbb5820f5ed"
+      (reference "D35") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/97c7d7d3-333e-48a4-a5dc-b02451811911"
+      (reference "D36") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/8cd4e952-4827-4c48-9c0a-53b22888d242"
+      (reference "D37") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/7d1aabbc-9dbc-4082-a153-970a2a8ee561"
+      (reference "D38") (unit 1) (value "1N4148") (footprint "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/8cd3267d-b4e4-4d8d-9e87-d4fc072a03a7"
-      (reference "Q?") (unit 1) (value "MMBT3906") (footprint "Package_TO_SOT_SMD:SOT-23")
+      (reference "Q31") (unit 1) (value "MMBT3906") (footprint "Package_TO_SOT_SMD:SOT-23")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/727cf34d-140c-48b6-9936-d91d5a57cf44"
+      (reference "Q32") (unit 1) (value "MMBT3904") (footprint "Package_TO_SOT_SMD:SOT-23")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/44e6a983-74c4-4b8f-8701-f0cb759166a3"
+      (reference "R31") (unit 1) (value "1k") (footprint "")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/60d820d1-5edd-4063-916b-1c73eebed3c3"
+      (reference "R32") (unit 1) (value "330") (footprint "")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/8c7b13d2-5b6f-4d20-9fce-36e7d761ac93"
+      (reference "R34") (unit 1) (value "2k") (footprint "")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/575e4595-5c5d-49ef-897f-6e1e5b82d107"
+      (reference "R35") (unit 1) (value "3k") (footprint "")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/6de1a8eb-5323-4076-a723-36db8959b763"
+      (reference "R36") (unit 1) (value "9k") (footprint "")
+    )
+    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/18d5ae91-676b-404b-ac3a-8063f77c0e47"
+      (reference "R37") (unit 1) (value "9k") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/093a3a24-d61f-4a29-8c3e-60d6075cf876"
       (reference "R?") (unit 1) (value "2k") (footprint "")
     )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/18d5ae91-676b-404b-ac3a-8063f77c0e47"
-      (reference "R?") (unit 1) (value "3.9k") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/44e6a983-74c4-4b8f-8701-f0cb759166a3"
-      (reference "R?") (unit 1) (value "1k") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/575e4595-5c5d-49ef-897f-6e1e5b82d107"
-      (reference "R?") (unit 1) (value "3.9k") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/60d820d1-5edd-4063-916b-1c73eebed3c3"
-      (reference "R?") (unit 1) (value "R") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/6de1a8eb-5323-4076-a723-36db8959b763"
-      (reference "R?") (unit 1) (value "3.9k") (footprint "")
-    )
-    (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/8c7b13d2-5b6f-4d20-9fce-36e7d761ac93"
-      (reference "R?") (unit 1) (value "2k") (footprint "")
-    )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/d7eae77d-540b-4c0e-aaf7-5c58eca2eb83"
-      (reference "R?") (unit 1) (value "R") (footprint "")
+      (reference "R?") (unit 1) (value "330") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/c2d9c4bd-46f7-4b4c-b31b-3c0e12ff4177"
       (reference "RV?") (unit 1) (value "R_POT") (footprint "")
@@ -1906,10 +1966,10 @@
       (reference "RV?") (unit 1) (value "R_POT") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/4ada94f8-9250-41d8-81df-1a0b39db40ac"
-      (reference "U?") (unit 1) (value "LM319") (footprint "")
+      (reference "U31") (unit 1) (value "LM319") (footprint "")
     )
     (path "/051008e0-21d7-4cb8-a579-83f0279b9efb/b9522152-f8fc-4d33-ab52-f9cfa7a8d6f6"
-      (reference "U?") (unit 1) (value "LM319") (footprint "")
+      (reference "U31") (unit 2) (value "LM319") (footprint "")
     )
   )
 )
